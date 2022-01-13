@@ -6,10 +6,10 @@ const router = express.Router();
 
 router.get('/all',todoRouts.allTodos);
 
-router.post('./add',todoRouts.addTodo);
+router.post('/add',todoRouts.addTodo);
 
-router.put('/done',todoRouts.doneTodo);
+router.put('/done/:id',todoRouts.doneTodo);
 
-router.delete('/delete',todoRouts.deleteTodo);
+router.delete('/delete/:id',todoRouts.deleteTodo);
 
 module.exports = router;
