@@ -1,0 +1,28 @@
+{
+  "name": "assignment-6",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.exozet.com:Florian.Gericke/assignment-6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "^5.0.0",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-plugin-react": "^7.28.0"
+  }
+}
