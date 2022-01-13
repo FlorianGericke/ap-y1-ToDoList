@@ -15,11 +15,26 @@
     <hr/>
     <ul class="list">
         {% for todo in todos %}
-            <li>
-                <input type="checkbox" name="{{ todo.id }}" onchange=""/>
+            <li
+            {% if todo.priority == 4 %}
+                style="color: magenta"
+            {% elseif todo.priority == 3 %}
+                style="color: red"
+            {% elseif todo.priority == 2 %}
+                style="color: blue"
+            {% elseif todo.priority == 1 %}
+                style="color: green"
+            {% endif %}
+            >
+                <input type="checkbox" name="{{ todo.id }}" {% if todo.done == true %} checked {% endif %} onchange="done({{ todo.id }})"/>
+                {{ todo.id }}
                 {{ todo.task }}
-                <button onclick="" class="trash"><i class="far fa-trash-alt"></i></button>
+                <button class="trash"  onclick="allert({{ todo.id }})" type="submit" ><i class="far fa-trash-alt"></i></button>
             </li>
         {% endfor %}
     </ul>
+{% endblock %}
+
+{% block script %}
+    <script src="./index.js"></script>
 {% endblock %}

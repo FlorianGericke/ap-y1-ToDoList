@@ -1,0 +1,27 @@
+{
+  "name": "assignment-6",
+  "version": "1.0.0",
+  "description": "The goal of this assignment is to strengthen your knowledge about SQL. It includes CREATE TABLE, SELECT, INSERT, UPDATE  and DELETE commands. <br/> Furthermore, in this challenge, you will work with Express routes and multiple HTTP Requests (GET, POST, PUT, DELETE).  <br/>",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.exozet.com:Florian.Gericke/assignment-6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.3",
+    "express": "^4.17.2",
+    "http-errors": "^2.0.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15",
+    "sqlite3": "^5.0.2",
+    "twig": "^1.15.4"
+  }
+}
