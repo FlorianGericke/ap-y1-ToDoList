@@ -4,7 +4,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start" :"nodemon server/server.js --watch server/*"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "^5.0.0",
+    "sass": "^1.48.0",
     "sqlite3": "^5.0.2"
   },
   "devDependencies": {
