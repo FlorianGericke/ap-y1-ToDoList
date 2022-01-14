@@ -4,7 +4,8 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "scripts": {
-    "start" :"nodemon server/server.js --watch server/*"
+    "startServer": "nodemon server/server.js --watch server/*",
+    "start": "react-scripts start"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.24.0",
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
@@ -25,5 +27,17 @@
   "devDependencies": {
     "eslint": "^8.6.0",
     "eslint-plugin-react": "^7.28.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
