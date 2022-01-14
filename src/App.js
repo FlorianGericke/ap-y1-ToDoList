@@ -3,9 +3,9 @@ import Todos from './components/todos/Todos';
 
 function App() {
   return (
-      <main>
-          <Todos/>
-      </main>
+    <main>
+      <Todos />
+    </main>
   );
 }
 export default App;

@@ -2,14 +2,14 @@ import React from 'react';
 import TodosOverText from './TodosOverText';
 import TodoList from './TodoList';
 
-
-const Todos = () => {
-    return(
-        <React.Fragment>
-            <TodosOverText/>
-            <TodoList/>
-        </React.Fragment>
-    );
-};
+function Todos() {
+  return (
+  // eslint-disable-next-line react/jsx-filename-extension
+    <>
+      <TodosOverText />
+      <TodoList />
+    </>
+  );
+}
 
 export default Todos;
