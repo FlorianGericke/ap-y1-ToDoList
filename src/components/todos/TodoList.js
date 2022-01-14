@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import style from './../../style/css/todos/TodoList.module.css'
+import ListItem from './ListItem';
 
 function TodoList() {
   const [todos, setTodos] = useState();
@@ -12,16 +14,8 @@ function TodoList() {
     .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
 
   return (
-    <ul>
-      {todos ? todos.map((todo) => (
-        <li>
-          {todo.id}
-          {' '}
-          {todo.task}
-          {' '}
-          {todo.done}
-        </li>
-      )) : ''}
+    <ul className={style.listItem}>
+      {todos ? todos.map((todo) => <ListItem>{todo}</ListItem>) : ''}
     </ul>
   );
 }
