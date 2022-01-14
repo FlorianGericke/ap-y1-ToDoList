@@ -14,7 +14,7 @@ function TodoList() {
     .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
 
   return (
-    <ul className={style.listItem}>
+    <ul className={style.list}>
       {todos ? todos.map((todo) => <ListItem>{todo}</ListItem>) : ''}
     </ul>
   );
