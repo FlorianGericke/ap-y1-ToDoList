@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import style from './../../style/css/todos/TodoList.module.css'
-import ListItem from './ListItem';
+import TodoTableRow from './TodoTableRow';
 
-function TodoList() {
-  const [todos, setTodos] = useState();
+function TodoTable() {
+  const [todos, setTodos] = useState('');
   axios
     .get('http://localhost:4001/todo/all')
     .then((response) => {
@@ -13,11 +13,16 @@ function TodoList() {
     })
     .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
 
+  function setDone(x){
+    axios
+        .put('http://localhost:4001/todo/done/' + x);
+  }
+
   return (
-    <ul className={style.list}>
-      {todos ? todos.map((todo) => <ListItem>{todo}</ListItem>) : ''}
-    </ul>
+    <table className={style.list}>
+      {todos ? todos.map((todo) => <TodoTableRow onClick={setDone} >{todo}</TodoTableRow>) : ''}
+    </table>
   );
 }
 
-export default TodoList;
+export default TodoTable;

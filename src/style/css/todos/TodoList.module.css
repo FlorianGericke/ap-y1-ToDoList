@@ -2,13 +2,26 @@
   font-family: "SketchitMeansSketchit";
   src: url("./../../../resources/font/SketchitMeansSketchit-85o2.ttf") format("truetype");
 }
+.example::-webkit-scrollbar {
+  display: none;
+}
+
+.example {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
 .list {
   font-family: SketchitMeansSketchit, serif;
   list-style-type: none;
   width: fit-content;
   font-size: 300%;
   margin: 0 auto;
-  color: #eee9e4;
+  height: 80vh;
+  overflow-x: visible;
+  overflow-y: scroll;
 }
 
-/*# sourceMappingURL=TodoList.module.css.map */
+/*# sourceMappingURL=TodoTable.module.css.map */

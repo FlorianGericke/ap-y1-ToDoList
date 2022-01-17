@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "startServer": "nodemon server/server.js --watch server/*",
-    "start": "react-scripts start"
+    "startReact": "react-scripts start",
+    "startSass": "sass --watch src/style/scss/:src/style/css",
+    "start" : "npm run startServer & npm run startSass & npm run startReact"
   },
   "repository": {
     "type": "git",

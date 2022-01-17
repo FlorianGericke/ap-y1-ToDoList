@@ -1,1 +1,1 @@
-{"version":3,"sourceRoot":"","sources":["../../scss/todos/TodoList.module.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;AAEF;EACE;EACA;EACA;EACA;EACA;EACA","file":"TodoList.module.css"}
+{"version":3,"sourceRoot":"","sources":["../../scss/todos/TodoTable.module.scss"],"names":[],"mappings":"AAAA;EACE;EACA;;AAGF;EACE;;;AAGF;EACE;AAA2B;EAC3B;AAAwB;;;AAG1B;EACE;EACA;EACA;EACA;EACA;EAEA;EACA;EACA","file":"TodoTable.module.css"}
