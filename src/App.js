@@ -1,11 +1,6 @@
 import React from 'react';
-import Todos from './components/todos/Todos';
+import Main from "./components/Main";
 
-function App() {
-  return (
-    <main>
-      <Todos />
-    </main>
-  );
-}
+function App() {return (<Main/>);}
+
 export default App;

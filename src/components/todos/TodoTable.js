@@ -24,7 +24,7 @@ function TodoTable() {
 
   return (
     <table className={style.list}>
-      {todos ? todos.map((todo) => <TodoTableRow onClick={setDone} >{todo}</TodoTableRow>) : ''}
+      {todos ? todos.map((todo) => <TodoTableRow onClick={setDone}>{todo}</TodoTableRow>) : ''}
     </table>
   );
 }
