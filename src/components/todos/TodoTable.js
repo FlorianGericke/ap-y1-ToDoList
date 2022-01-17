@@ -13,9 +13,13 @@ function TodoTable() {
     })
     .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
 
+  function getTodoWithId(id){
+    return todos.filter(todo => todo.id === id)[0];
+  }
+
   function setDone(x){
     axios
-        .put('http://localhost:4001/todo/done/' + x);
+        .put(`http://localhost:4001/todo/${getTodoWithId(x).done === 0 ? 'done' : 'unDone'}/${x}`);
   }
 
   return (
