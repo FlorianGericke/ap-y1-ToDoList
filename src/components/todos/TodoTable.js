@@ -23,9 +23,11 @@ function TodoTable() {
   }
 
   return (
-    <table className={style.list}>
-      {todos ? todos.map((todo) => <TodoTableRow onClick={setDone}>{todo}</TodoTableRow>) : ''}
-    </table>
+      <div  className={style.list}>
+        <table>
+          {todos ? todos.map((todo) => <TodoTableRow onClick={setDone}>{todo}</TodoTableRow>) : ''}
+        </table>
+      </div>
   );
 }
 
