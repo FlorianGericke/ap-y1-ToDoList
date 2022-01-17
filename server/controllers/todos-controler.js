@@ -13,7 +13,7 @@ exports.allTodos = (req, res) => {
 
 // todo async in tutorial i like to try without !!!
 exports.addTodo = (req, res) => {
-  db.run('INSERT INTO todo (task,priority,done) VALUES (?,?,?)', [req.body.task, req.body.priority, req.body.done], (err) => {
+  db.run('INSERT INTO todo (task,priority,done) VALUES (?,?,?)', [req.body.task, req.body.priority, (req.body.done ? req.body.done : 0 )], (err) => {
     if (err) {
       res.json({ ErrorMassage: 'Error in Create new todo' });
     } else {
