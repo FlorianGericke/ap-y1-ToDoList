@@ -29,7 +29,7 @@ function clicked(){
 
 
   return (
-        <tr className={style.ListItem} onClick={clicked}  style={color}>
+        <tr className={style.tableRow} onClick={clicked}  style={color}>
           <td>
             {props.children.task}
           </td>

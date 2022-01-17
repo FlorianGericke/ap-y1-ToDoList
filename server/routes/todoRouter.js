@@ -10,6 +10,8 @@ router.post('/add',todoRouts.addTodo);
 
 router.put('/done/:id',todoRouts.doneTodo);
 
+router.put('/unDone/:id',todoRouts.UnDoneTodo);
+
 router.delete('/delete/:id',todoRouts.deleteTodo);
 
 module.exports = router;

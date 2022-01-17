@@ -34,6 +34,17 @@ exports.doneTodo = (req, res) => {
 };
 
 // todo async in tutorial i like to try without !!!
+exports.UnDoneTodo = (req, res) => {
+  db.run('UPDATE todo SET done = false WHERE id = ?', req.params.id, (err) => {
+    if (err) {
+      res.json({ ErrorMassage: 'Error while set todo UnDone' });
+    } else {
+      res.json({ massage: 'Todo is set to UnDone' });
+    }
+  });
+};
+
+// todo async in tutorial i like to try without !!!
 exports.deleteTodo = (req, res) => {
   db.run('DELETE FROM todo WHERE id = ?', req.params.id, (err) => {
     if (err) {
