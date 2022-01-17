@@ -26,8 +26,6 @@ const TodoTableRow = (props) => {
 function clicked(){
     props.onClick(props.children.id)
 }
-
-
   return (
         <tr className={style.tableRow} onClick={clicked}  style={color}>
           <td>
