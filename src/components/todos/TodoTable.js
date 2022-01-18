@@ -5,10 +5,10 @@ import TodoTableRow from './TodoTableRow';
 
 function TodoTable() {
   const [todos, setTodos] = useState('');
+  const [deleteMode, setDeleteMode] = useState(false);
   axios
     .get('http://localhost:4001/todo/all')
     .then((response) => {
-      // Update the books state
       setTodos(response.data);
     })
     .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
@@ -18,14 +18,19 @@ function TodoTable() {
   }
 
   function setDone(x){
-    axios
-        .put(`http://localhost:4001/todo/${getTodoWithId(x).done === 0 ? 'done' : 'unDone'}/${x}`);
+     if(!deleteMode){
+         axios
+             .put(`http://localhost:4001/todo/${getTodoWithId(x).done === 0 ? 'done' : 'unDone'}/${x}`);
+     }else{
+         axios
+             .delete(`http://localhost:4001/todo/delete/${x}`);
+     }
   }
 
   return (
       <div  className={style.list}>
         <table>
-          {todos ? todos.map((todo) => <TodoTableRow onClick={setDone}>{todo}</TodoTableRow>) : ''}
+          {todos ? todos.map((todo) => <TodoTableRow showDelete={deleteMode} onClick={setDone}>{todo}</TodoTableRow>) : ''}
         </table>
       </div>
   );

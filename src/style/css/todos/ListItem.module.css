@@ -13,4 +13,12 @@
   margin: auto 10px auto 50px;
 }
 
+.deleteIcon {
+  width: 15px;
+  height: 15px;
+  position: relative;
+  top: -30px;
+  left: 0;
+}
+
 /*# sourceMappingURL=ListItem.module.css.map */

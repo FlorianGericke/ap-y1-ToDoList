@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "SketchitMeansSketchit";
+  src: url("./../../../../resources/font/SketchitMeansSketchit-85o2.ttf") format("truetype");
+}
+
+.addForm{
+  font-family: SketchitMeansSketchit, serif;
+  width: fit-content;
+  position: relative;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  input , select{
+    height: 50px;
+    margin: 0px 100px 0px 100px;
+    font-size: 80%;
+    border-radius: 13px;
+  }
+  .userInput{
+    font-size: 300%;
+    padding: 10px 5px 10px 5px;
+    text-align: center;
+  }
+  div{
+    font-size: 170%;
+    margin: 0 auto;
+  }
+}

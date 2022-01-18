@@ -13,7 +13,7 @@ const Main = () => {
         <React.Fragment>
             <TodosOverText />
             <div className={style.div}>
-                <Button onClick={() => setNewTodoVisibility(true)} />
+                <Button onClick={() => setNewTodoVisibility(true)}>Neues Todo</Button>
                 {newTodoVisibility ? <AddNewTodo backDropClick={() => setNewTodoVisibility(false)} /> : ''}
                 <TodoTable />
             </div>
