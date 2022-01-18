@@ -1,4 +1,10 @@
 .div{
   width: fit-content;
   margin: 0 auto;
+  .buttonsDiv{
+    display: flex;
+  }
+}
+.Spacer{
+  width:200px;
 }

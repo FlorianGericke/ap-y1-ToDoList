@@ -1,14 +1,14 @@
 const express = require('express');
 
 const todoRouter = require('./routes/todoRouter');
-const bodyParser = require('express');
+// const bodyParser = require('express');
 
 const PORT = process.env.PORT || 4001;
 
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // Add headers before the routes are defined
 app.use(function (req, res, next) {

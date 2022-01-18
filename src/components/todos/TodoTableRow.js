@@ -23,11 +23,9 @@ const TodoTableRow = (props) => {
       break;
   }
 
-
 function clicked(){
     props.onClick(props.children.id)
 }
-
     let showDelete;
     return (
         <tr className={style.tableRow} onClick={clicked} style={color}>

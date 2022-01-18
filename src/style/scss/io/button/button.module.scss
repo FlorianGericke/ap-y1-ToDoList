@@ -3,7 +3,7 @@
   src: url("./../../../../resources/font/SketchitMeansSketchit-85o2.ttf") format("truetype");
 }
 
-.myButton{
+.myTrigger{
   background-image: url("./../../../../resources/textures/2.jpg");
   background-repeat: no-repeat;
   background-position: -600px -690px;
@@ -34,4 +34,30 @@
     box-shadow: 1px 1px 5px black;
   }
 }
+
+.toggle{
+  background-image: url("./../../../../resources/textures/2.jpg");
+  background-repeat: no-repeat;
+  background-position: -600px -690px;
+
+  margin-bottom: 20px;
+
+  width: 200px;
+  height: 50px;
+
+  font-family: SketchitMeansSketchit, serif;
+  font-size: 150%;
+
+  box-shadow: 5px 5px 15px black;
+  border-radius: 13px;
+
+  span{
+    position: relative;
+    top: 10px;
+    left: 5px;
+  }
+  opacity: 0.9;
+  box-shadow: 1px 1px 5px black;
+}
+
 

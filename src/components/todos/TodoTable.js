@@ -3,9 +3,9 @@ import axios from 'axios';
 import style from './../../style/css/todos/TodoList.module.css'
 import TodoTableRow from './TodoTableRow';
 
-function TodoTable() {
+function TodoTable(props) {
   const [todos, setTodos] = useState('');
-  const [deleteMode, setDeleteMode] = useState(false);
+
   axios
     .get('http://localhost:4001/todo/all')
     .then((response) => {
@@ -18,7 +18,7 @@ function TodoTable() {
   }
 
   function setDone(x){
-     if(!deleteMode){
+     if(!props.setDeleteMode){
          axios
              .put(`http://localhost:4001/todo/${getTodoWithId(x).done === 0 ? 'done' : 'unDone'}/${x}`);
      }else{
@@ -28,9 +28,9 @@ function TodoTable() {
   }
 
   return (
-      <div  className={style.list}>
+      <div className={style.list}>
         <table>
-          {todos ? todos.map((todo) => <TodoTableRow showDelete={deleteMode} onClick={setDone}>{todo}</TodoTableRow>) : ''}
+          {todos ? todos.map((todo) => <TodoTableRow showDelete={props.setDeleteMode} onClick={setDone}>{todo}</TodoTableRow>) : ''}
         </table>
       </div>
   );
