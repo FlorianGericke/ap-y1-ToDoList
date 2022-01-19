@@ -20,7 +20,7 @@
   left: 5px;
 }
 .myTrigger:hover {
-  box-shadow: 5px 5px 10px #323232;
+  box-shadow: 5px 5px 10px black;
 }
 .myTrigger:active {
   opacity: 0.9;
