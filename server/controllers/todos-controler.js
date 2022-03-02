@@ -1,56 +1,68 @@
-const db = require('../db');
+const Todo = require("../models/Todo");
 
-// todo async in tutorial i like to try without !!!
 exports.allTodos = (req, res) => {
-  db.all('SELECT * FROM todo', [], (err, rows) => {
-    if (err) {
-      res.json({ ErrorMassage: 'Error while receiving all todos from Database' });
-    } else {
-      res.json(rows);
-    }
-  });
+    Todo.findAll()
+        .then(todos => res.json(todos))
+        .catch(result => res.json({
+            ErrorMassage: 'Error while receiving all todos from Database',
+            result: result
+        }));
 };
 
-// todo async in tutorial i like to try without !!!
 exports.addTodo = (req, res) => {
-  db.run('INSERT INTO todo (task,priority,done) VALUES (?,?,?)', [req.body.task, req.body.priority, (req.body.done ? req.body.done : 0 )], (err) => {
-    if (err) {
-      res.json({ ErrorMassage: 'Error in Create new todo' });
-    } else {
-      res.json({ massage: `New Todo ${req.body.task} is added to database` });
-    }
-  });
+    Todo.create({
+        task: req.body.task,
+        priority: req.body.priority,
+        done: (req.body.done ? req.body.done : 0)
+    })
+        .then(result => res.json({
+            massage: `New Todo ${req.body.task} is added to database`
+        }))
+        .catch(err => res.json({
+            ErrorMassage: 'Error in Create new todo',
+            result: err
+        }));
+
 };
 
-// todo async in tutorial i like to try without !!!
 exports.doneTodo = (req, res) => {
-  db.run('UPDATE todo SET done = true WHERE id = ?', req.params.id, (err) => {
-    if (err) {
-      res.json({ ErrorMassage: 'Error while set todo done' });
-    } else {
-      res.json({ massage: 'Todo is set to done' });
-    }
-  });
+    Todo.update({done: true}, {
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(todo => {
+            res.json({ErrorMassage: 'Todo is set to done'})
+        })
+        .catch(err => res.json({
+            ErrorMassage: 'Error in set todo done',
+            result: err
+        }));
 };
 
-// todo async in tutorial i like to try without !!!
 exports.UnDoneTodo = (req, res) => {
-  db.run('UPDATE todo SET done = false WHERE id = ?', req.params.id, (err) => {
-    if (err) {
-      res.json({ ErrorMassage: 'Error while set todo UnDone' });
-    } else {
-      res.json({ massage: 'Todo is set to UnDone' });
-    }
-  });
+    Todo.update({done: false}, {
+        where: {
+            id: req.params.id
+        }
+    })
+        .then(todo => {
+            res.json({ErrorMassage: 'Todo is set to Undone'})
+        })
+        .catch(err => res.json({
+            ErrorMassage: 'Error in set todo Undone',
+            result: err
+        }));
 };
 
-// todo async in tutorial i like to try without !!!
 exports.deleteTodo = (req, res) => {
-  db.run('DELETE FROM todo WHERE id = ?', req.params.id, (err) => {
-    if (err) {
-      res.json({ ErrorMassage: 'Error delete todo' });
-    } else {
-      res.json({ massage: 'Todo is deleted' });
-    }
-  });
+    Todo.findByPk(req.params.id)
+        .then(todo => {
+            todo.destroy();
+            res.json({ErrorMassage: 'Todo is deleted'})
+        })
+        .catch(result => res.json({
+            ErrorMassage: 'Error delete todo',
+            result: result
+        }));
 };
