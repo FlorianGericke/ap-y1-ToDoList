@@ -1,12 +1,16 @@
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
+const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-
-const sequelize = require('./util/database');
 const app = express();
-const todoRouter = require('./routes/todoRouter');
+
+const sequelize = require('./util/Database');
+const Todo = require('./models/Todo');
+const User = require('./models/User');
+
+const todoRouter = require('./routes/todo');
+const authentificationRouter = require('./routes/authenticate');
 
 //setting up middlewares
 app.use(logger('dev'));
@@ -30,15 +34,25 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(cookieParser());
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
 
 app.use('/todo', todoRouter);
+app.use('/auth', authentificationRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     next(createError(404));
 });
 
-sequelize.sync({force: false})
+User.hasMany(Todo);
+Todo.belongsTo(User);
+
+sequelize.sync({force: true})
     .catch(err => console.log(err));
 
 // error handler

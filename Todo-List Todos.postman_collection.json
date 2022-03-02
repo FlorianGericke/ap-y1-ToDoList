@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "36d106b7-1490-4834-a95d-a23659ff4c3e",
-		"name": "My To-do-List",
+		"_postman_id": "5f6a3fac-cec3-4e76-b1ec-5bd27f840a36",
+		"name": "Todo-List Todos",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "http://localhost:4001/todo/add",
+			"name": "Add Todo",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -18,7 +18,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "\n{\n    \"task\"      : \"Nur zum Test\",\n    \"priority\"  : 2\n\n}\n"
+					"raw": "\n{\n    \"task\"      : \"\",\n    \"priority\"  : 2\n\n}\n"
 				},
 				"url": {
 					"raw": "http://localhost:4001/todo/add",
@@ -36,7 +36,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4001/todo/delete/8",
+			"name": "Delete Todo",
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -57,7 +57,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4001/todo/all",
+			"name": "GetAll Todos",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -77,7 +77,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4001/todo/done/1",
+			"name": "setDone Todo",
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -98,7 +98,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:4001/todo/unDone/4",
+			"name": "setUndone Todo",
 			"request": {
 				"method": "PUT",
 				"header": [],
