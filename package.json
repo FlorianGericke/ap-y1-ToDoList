@@ -2,9 +2,9 @@
   "name": "assignment-6",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "server/bin/www.js",
+  "main": "Server/bin/www.js",
   "scripts": {
-    "startServer": "nodemon server/bin/www.js --watch server/",
+    "startServer": "nodemon Server/bin/www.js --watch Server/",
     "startReact": "react-scripts start",
     "startSass": "sass --watch src/style/scss/:src/style/css",
     "start": "npm run startServer & npm run startSass & npm run startReact"
@@ -19,27 +19,22 @@
   "dependencies": {
     "axios": "^0.24.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "debug": "^4.3.3",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
+    "got": "^12.0.1",
     "http-errors": "^2.0.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^2.1.3",
     "sass": "^1.48.0",
     "sequelize": "^6.17.0",
-    "sqlite3": "^5.0.2"
-  },
-  "devDependencies": {
-    "eslint": "^8.6.0",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0"
+    "sqlite3": "^4.2.0",
+    "universal-cookie": "^4.0.4"
   },
   "browserslist": {
     "production": [

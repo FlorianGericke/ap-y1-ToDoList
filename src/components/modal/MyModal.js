@@ -1,3 +1,4 @@
+import React  from 'react';
 import style from './../../style/css/modal/Mymodal.module.css'
 import {Fragment} from "react";
 import {createPortal} from "react-dom";

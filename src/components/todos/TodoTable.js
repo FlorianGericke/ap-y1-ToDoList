@@ -1,36 +1,46 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import style from './../../style/css/todos/TodoList.module.css'
+import axios from "axios";
 import TodoTableRow from './TodoTableRow';
 
+const todoApi = axios.create({
+  baseURL:'http://localhost:4001/todo/',
+  withCredentials: true
+});
+
+
+
+
+
+
+
 function TodoTable(props) {
-  const [todos, setTodos] = useState('');
+    const [todos, setTodos] = useState();
 
-  axios
-    .get('http://localhost:4001/todo/all')
-    .then((response) => {
-      setTodos(response.data);
-    })
-    .catch((error) => console.error(`There was an error retrieving the book list: ${error}`));
+    function getTodoWithId(id){
+        return todos.filter(todo => todo.id === id)[0];
+    }
 
-  function getTodoWithId(id){
-    return todos.filter(todo => todo.id === id)[0];
-  }
+    useEffect(() =>{todoApi.get('/all')
+        .then( err =>{
+            console.log(err);
+            setTodos(err.data);
+        });},[])
 
-  function setDone(x){
+
+  function onClick(x){
      if(!props.setDeleteMode){
-         axios
-             .put(`http://localhost:4001/todo/${getTodoWithId(x).done === 0 ? 'done' : 'unDone'}/${x}`);
+         todoApi.put(`/${getTodoWithId(x).done === false ? 'done' : 'unDone'}/${x}`);
      }else{
-         axios
-             .delete(`http://localhost:4001/todo/delete/${x}`);
+         todoApi.delete(`http://localhost:4001/todo/delete/${x}`);
      }
+      window.document.location.reload();
   }
 
   return (
       <div className={style.list}>
         <table>
-          {todos ? todos.map((todo) => <TodoTableRow showDelete={props.setDeleteMode} onClick={setDone}>{todo}</TodoTableRow>) : ''}
+          {todos ? todos.map((todo) => <TodoTableRow showDelete={props.setDeleteMode} onClick={onClick}>{todo}</TodoTableRow>) : ''}
         </table>
       </div>
   );

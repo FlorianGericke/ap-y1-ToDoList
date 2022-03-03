@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(session({
     secret: 'secret',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
 }));
 
 
@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 User.hasMany(Todo);
 Todo.belongsTo(User);
 
-sequelize.sync({force: true})
+sequelize.sync({force: false})
     .catch(err => console.log(err));
 
 // error handler

@@ -28,7 +28,7 @@ exports.postRegistration = (req, res) => {
 }
 
 exports.postLogin = (req, res) => {
-    if (req.session.loggedIn === false) {
+    if (req.session.loggedIn !== true) {
         User.findAll({
             where: {
                 name: req.body.username,
@@ -42,11 +42,11 @@ exports.postLogin = (req, res) => {
                 } else {
                     req.session.loggedIn = true;
                     req.session.user = user;
-                    res.json({msg: `User ${user.name} logged in successfully`});
+                    res.json({msg: `User ${user.name} logged in successfully`, session: req.sessionID});
                 }
             });
     } else {
-        res.json({msg: `Someone is currently logged in`});
+        res.json({msg: `Someone is currently logged in1`});
     }
 }
 
