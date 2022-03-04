@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../../style/css/todos/TodoOvertext.module.css';
+import style from '../../../style/css/ui/todos/TodoOvertext.module.css';
 
 function TodosOverText() {
   return (

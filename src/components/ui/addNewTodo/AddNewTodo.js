@@ -1,32 +1,26 @@
 import React from 'react';
 import MyModal from "../../modal/MyModal";
 import {useState} from "react";
-
 import style from './../../../style/css/ui/addNewTodo/addNewTodo.module.css';
 import Button from "../../io/button/Button";
-import axios from "axios";
 
-const todoApi = axios.create({
-    baseURL:'http://localhost:4001/todo/',
-    withCredentials: true
-});
+import {todoApi} from "../../../requests/AxiosRequest";
 
-const AddNewTodo = (props) =>{
 
-    const [insertTask,setTask] = useState('')
-    const [insertPriority,setPriority] = useState('')
+const AddNewTodo = (props) => {
 
-    function submitHandler(e){
+    const [insertTask, setTask] = useState()
+    const [insertPriority, setPriority] = useState()
+
+    function submitHandler(e) {
         // e.preventDefault();
-        todoApi.post('/add',{
-            task: insertTask,
-            priority: insertPriority
-        }).then(() =>{
-            props.backDropClick();
-        });
+        todoApi.add(insertTask, insertPriority)
+            .then(() => {
+                props.backDropClick();
+            });
     }
 
-    return(
+    return (
         <MyModal backDropClick={props.backDropClick}>
             <form id="addForm" name="addForm" className={style.addForm} onSubmit={submitHandler}>
                 <div className={style.userInput}>
@@ -35,10 +29,10 @@ const AddNewTodo = (props) =>{
                     <input type="text" name="task" onChange={(e) => setTask(e.target.value)}/>
                 </div>
                 <br/>
-                <div  className={style.userInput}>
+                <div className={style.userInput}>
                     <label htmlFor="priority"><b>Dringlichkeit</b></label>
                     <br/>
-                    <select name="priority"  onChange={(e) => setPriority(e.target.value)} >
+                    <select name="priority" onChange={(e) => setPriority(e.target.value)}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -46,7 +40,6 @@ const AddNewTodo = (props) =>{
                     </select>
                 </div>
                 <br/>
-                {/*<button type="submit"  >Neues Todo anlegen</button>*/}
                 <Button onClick={() => submitHandler()}>Hinzufügen</Button>
             </form>
         </MyModal>
