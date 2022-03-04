@@ -12,12 +12,13 @@ const AddNewTodo = (props) => {
     const [insertTask, setTask] = useState()
     const [insertPriority, setPriority] = useState()
 
-    function submitHandler(e) {
-        // e.preventDefault();
+    function submitHandler() {
         todoApi.add(insertTask, insertPriority)
-            .then(() => {
+            .then(resolve => {
+                console.log(resolve);
                 props.backDropClick();
-            });
+            })
+            .catch(err => console.log('Error while setUndone',err));
     }
 
     return (

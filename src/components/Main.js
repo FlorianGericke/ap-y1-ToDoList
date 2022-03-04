@@ -1,15 +1,31 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './../style/css/main.module.css'
 
 import Button from "./io/button/Button";
 import TodoTable from "./ui/todos/TodoTable";
 import AddNewTodo from "./ui/addNewTodo/AddNewTodo";
 import TodosOverText from "./ui/todos/TodosOverText";
+import {authApi, todoApi} from "../requests/AxiosRequest";
 
 
 const Main = () => {
     const [newTodoVisibility, setNewTodoVisibility] = useState(false);
     const [DeleteMode, setDeleteMode] = useState(false);
+    const [todos, setTodos] = useState();
+
+    // Login only with page reload
+    useEffect(() => {
+        authApi.login('Florian','123')
+            .then(resolve => console.log(resolve))
+            .catch(err => console.log('Error while login',err));
+    }, []);
+
+    useEffect(() => {
+        todoApi.getAll()
+            .then(err => {
+                setTodos(err.data);
+            });
+    }, [newTodoVisibility])
 
     return (
         <>
@@ -22,9 +38,13 @@ const Main = () => {
                 </div>
                 {newTodoVisibility ? <AddNewTodo backDropClick={() => {
                     setNewTodoVisibility(false);
-                    window.location.reload();
                 }}/> : ''}
-                <TodoTable setDeleteMode={DeleteMode}/>
+                <TodoTable todos={todos} refresh={() =>{
+                    todoApi.getAll()
+                        .then(err => {
+                            setTodos(err.data);
+                        });
+                }}  todoChange={setNewTodoVisibility} setDeleteMode={DeleteMode}/>
             </div>
         </>
     );

@@ -10,8 +10,6 @@ export class authApi {
         return await this.api.post('/register', {
             username: username,
             password: password
-        }).then(res => {
-            console.log(res)
         });
     }
 
@@ -19,16 +17,11 @@ export class authApi {
         return await this.api.post('/login', {
             username: username,
             password: password
-        }).then(res => {
-            console.log(res)
         });
     }
 
     static logout = async () => {
-        return await this.api.post('/logout', {})
-            .then(res => {
-                console.log(res)
-            });
+        return await this.api.post('/logout', {});
     }
 }
 
