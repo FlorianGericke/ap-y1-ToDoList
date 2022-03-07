@@ -16,7 +16,7 @@ exports.postRegistration = (req, res) => {
                     }).then(user => {
                         req.session.loggedIn = true;
                         req.session.user = user;
-                        res.json({msg: `Account for ${user.name} create successfully`});
+                        res.json({msg: `Account for ${user.name} create successfully`, user:user.name});
                     })
                 } else {
                     res.json({msg: `Account with Username ${users[0].name} is already created`});
@@ -42,11 +42,11 @@ exports.postLogin = (req, res) => {
                 } else {
                     req.session.loggedIn = true;
                     req.session.user = user;
-                    res.json({msg: `User ${user.name} logged in successfully`, session: req.sessionID});
+                    res.json({msg: `User ${user.name} logged in successfully`, user:user.name});
                 }
             });
     } else {
-        res.json({msg: `Someone is currently logged in1`});
+        res.json({msg: `Someone is currently logged in`,user: req.session.user.name});
     }
 }
 

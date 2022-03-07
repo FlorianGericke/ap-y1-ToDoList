@@ -10,4 +10,10 @@
   width: 200px;
 }
 
+.logoutButton {
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
 /*# sourceMappingURL=main.module.css.map */
