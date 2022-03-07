@@ -3,7 +3,6 @@ import style from './../../../style/css/ui/todos/TodoList.module.css'
 import TodoTableRow from './TodoTableRow';
 import {todoApi} from "../../../requests/AxiosRequest";
 
-
 function TodoTable(props) {
     function getTodoWithId(id) {
         return props.todos.filter(todo => todo.id === id)[0];
@@ -33,8 +32,10 @@ function TodoTable(props) {
     return (
         <div className={style.list}>
             <table>
-                {props.todos ? Array.from(props.todos).map((todo) => <TodoTableRow key={todo.id} showDelete={props.setDeleteMode}
-                                                                       onClick={onClick}>{todo}</TodoTableRow>) : ''}
+                {props.todos ? Array.from(props.todos).map((todo) =>
+                    <TodoTableRow key={todo.id}
+                                  showDelete={props.setDeleteMode}
+                                  onClick={onClick}>{todo}</TodoTableRow>) : ''}
             </table>
         </div>
     );

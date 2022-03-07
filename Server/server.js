@@ -40,7 +40,6 @@ app.use(session({
     saveUninitialized: true,
 }));
 
-
 app.use('/todo', todoRouter);
 app.use('/auth', authentificationRouter)
 
@@ -67,4 +66,3 @@ app.use(function (err, req, res, next) {
 });
 
 module.exports = app;
-

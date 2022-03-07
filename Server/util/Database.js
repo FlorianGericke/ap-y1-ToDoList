@@ -7,4 +7,5 @@ let sequelize = new Sequelize('Assignment-todolists', 'root', 'password', {
     },
     host: 'localhost',
 });
+
 module.exports = sequelize;

@@ -3,12 +3,9 @@ import MyModal from "../../modal/MyModal";
 import {useState} from "react";
 import style from './../../../style/css/ui/addNewTodo/addNewTodo.module.css';
 import Button from "../../io/button/Button";
-
 import {todoApi} from "../../../requests/AxiosRequest";
 
-
 const AddNewTodo = (props) => {
-
     const [insertTask, setTask] = useState()
     const [insertPriority, setPriority] = useState()
 
@@ -18,7 +15,7 @@ const AddNewTodo = (props) => {
                 console.log(resolve);
                 props.backDropClick();
             })
-            .catch(err => console.log('Error while setUndone',err));
+            .catch(err => console.log('Error while setUndone', err));
     }
 
     return (

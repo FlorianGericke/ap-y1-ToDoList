@@ -51,7 +51,7 @@ export class todoApi {
     }
 
     static delete = async (id) => {
-       return await this.api.delete(`/delete/${id}`);
+        return await this.api.delete(`/delete/${id}`);
     }
 }
 

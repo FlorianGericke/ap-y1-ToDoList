@@ -3,16 +3,18 @@
   src: url("./../../../../resources/font/SketchitMeansSketchit-85o2.ttf") format("truetype");
 }
 
-.inputs{
+.inputs {
   font-family: SketchitMeansSketchit, serif;
   font-size: 300%;
   display: flex;
   flex-direction: column;
   margin: 5% 25% 0 25%;
-  label{
+
+  label {
     margin-top: 10%;
   }
-  input{
+
+  input {
     margin-top: 10px;
     height: 50px;
     font-size: 80%;
@@ -26,7 +28,8 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  div{
+
+  div {
     margin-left: 5%;
     margin-right: 5%;
   }

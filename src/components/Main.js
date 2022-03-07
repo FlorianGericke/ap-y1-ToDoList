@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import style from './../style/css/main.module.css'
-
 import Button from "./io/button/Button";
 import TodoTable from "./ui/todos/TodoTable";
 import AddNewTodo from "./ui/addNewTodo/AddNewTodo";
@@ -19,11 +18,11 @@ const Main = () => {
             .then(err => {
                 setTodos(err.data);
             });
-    }, [newTodoVisibility,userName])
+    }, [newTodoVisibility, userName])
 
     const loginRender = () => {
         return (
-            <Login setUserName={setUserName}  />
+            <Login setUserName={setUserName}/>
         );
     }
 

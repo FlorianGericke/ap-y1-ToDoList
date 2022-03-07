@@ -1,11 +1,9 @@
 const express = require('express');
-
-const authentification = require('./../controllers/authentification');
-
+const authentication = require('./../controllers/authentification');
 const router = express.Router();
 
-router.post('/register',authentification.postRegistration);
-router.post('/login',authentification.postLogin);
-router.post('/logout',authentification.postLogout);
+router.post('/register', authentication.postRegistration);
+router.post('/login', authentication.postLogin);
+router.post('/logout', authentication.postLogout);
 
 module.exports = router;

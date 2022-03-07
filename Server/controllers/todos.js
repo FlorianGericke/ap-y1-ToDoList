@@ -2,21 +2,21 @@ const Todo = require("../models/Todo");
 const User = require("../models/User");
 
 exports.allTodos = (req, res) => {
-    if(req.session.loggedIn === true) {
+    if (req.session.loggedIn === true) {
         User.findByPk(req.session.user.id)
             .then(user => {
-                if(user){
+                if (user) {
                     user.getTodos()
                         .then(todos => {
-                            if(todos){
+                            if (todos) {
                                 res.json(todos)
-                            }else{
+                            } else {
                                 res.json({
                                     ErrorMassage: 'Error in receiving Todos',
                                 })
                             }
                         })
-                }else{
+                } else {
                     res.json({
                         ErrorMassage: 'Owner not found in database'
                     });
@@ -27,16 +27,16 @@ exports.allTodos = (req, res) => {
                 ErrorMassage: 'Error in Add todo',
                 result: err
             }));
-    }else{
+    } else {
         res.json({msg: `No one is logged in`});
     }
 };
 
 exports.addTodo = (req, res) => {
-    if(req.session.loggedIn === true) {
+    if (req.session.loggedIn === true) {
         User.findByPk(req.session.user.id)
             .then(user => {
-                if(user){
+                if (user) {
                     user.createTodo({
                         task: req.body.task,
                         priority: req.body.priority,
@@ -49,18 +49,17 @@ exports.addTodo = (req, res) => {
                             ErrorMassage: 'Error in Create new todo',
                             result: err
                         }));
-                }else{
+                } else {
                     res.json({
                         ErrorMassage: 'Owner not found in database'
                     });
                 }
-
             })
             .catch(err => res.json({
                 ErrorMassage: 'Error in Add todo',
                 result: err
             }));
-        }else{
+    } else {
         res.json({msg: `No one is logged in`});
     }
 };
