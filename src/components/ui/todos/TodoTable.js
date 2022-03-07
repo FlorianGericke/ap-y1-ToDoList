@@ -33,9 +33,11 @@ function TodoTable(props) {
         <div className={style.list}>
             <table>
                 {props.todos ? Array.from(props.todos).map((todo) =>
+                    <tbody key={todo.id}>
                     <TodoTableRow key={todo.id}
                                   showDelete={props.setDeleteMode}
-                                  onClick={onClick}>{todo}</TodoTableRow>) : ''}
+                                  onClick={onClick}>{todo}</TodoTableRow>
+                    </tbody>) : ""}
             </table>
         </div>
     );

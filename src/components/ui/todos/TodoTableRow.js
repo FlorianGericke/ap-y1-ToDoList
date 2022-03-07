@@ -35,9 +35,9 @@ const TodoTableRow = (props) => {
                 {props.children.task}
             </td>
             <td>
-                <img className={style.imageIcon} src={props.children.done ? logoDone : logoUnDone} alt={''}/>
+                <img className={style.imageIcon} src={props.children.done ? logoDone : logoUnDone} alt={""}/>
+                {props.showDelete === true ?<img className={style.deleteIcon} src={deleteIcon} alt={''}/>:""}
             </td>
-            {props.showDelete ? <img className={style.deleteIcon} src={deleteIcon} alt={''}/> : ''}
         </tr>
     );
 }

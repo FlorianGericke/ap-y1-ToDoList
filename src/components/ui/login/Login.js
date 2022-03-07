@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import style from './../../../style/css/ui/login/login.module.css';
 import MyModal from "../../modal/MyModal";
 import Button from "../../io/button/Button";
@@ -8,14 +8,16 @@ export default (props) => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
 
-    authApi.login('', '')
-        .then(resolve => {
-            if (resolve.data.msg === 'Someone is currently logged in') {
-                props.setUserName(resolve.data.user);
-            }
-            console.log(resolve)
-        })
-        .catch(err => console.log('Error while login', err));
+    useEffect(() => {
+        authApi.login('', '')
+            .then(resolve => {
+                if (resolve.data.msg === 'Someone is currently logged in') {
+                    props.setUserName(resolve.data.user);
+                }
+                console.log(resolve)
+            })
+            .catch(err => console.log('Error while login', err));
+    }, []);
 
     const login = () => {
         authApi.login(username, password)
@@ -42,10 +44,10 @@ export default (props) => {
     return (
         <MyModal>
             <div className={style.inputs}>
-                <label for='username'><b>Username</b></label>
+                <label htmlFor='username'><b>Username</b></label>
                 <input type="text" id="username" onChange={(e) => setUsername(e.target.value)} name="username"
                        placeholder="Username"/>
-                <label for='password'><b>Password</b></label>
+                <label htmlFor='password'><b>Password</b></label>
                 <input type="password" onChange={(e) => setPassword(e.target.value)} id="password" name="password"
                        placeholder="Password"/>
             </div>
