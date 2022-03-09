@@ -1,8 +1,13 @@
 import React from 'react';
 import Main from "./components/Main";
+import UserContext from "./context/UserContext";
 
 function App() {
-    return (<Main/>);
+    return (
+        <UserContext>
+            <Main/>);
+        </UserContext>
+    );
 }
 
 export default App;
