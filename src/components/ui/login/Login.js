@@ -1,45 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import style from './../../../style/css/ui/login/login.module.css';
 import MyModal from "../../modal/MyModal";
 import Button from "../../io/button/Button";
-import {authApi} from "../../../requests/AxiosRequest";
+import UserContext from "../../../context/UserContext";
 
 export default (props) => {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
-
-    useEffect(() => {
-        authApi.login('', '')
-            .then(resolve => {
-                if (resolve.data.msg === 'Someone is currently logged in') {
-                    props.setUserName(resolve.data.user);
-                }
-                console.log(resolve)
-            })
-            .catch(err => console.log('Error while login', err));
-    }, []);
-
-    const login = () => {
-        authApi.login(username, password)
-            .then(resolve => {
-                if (resolve.data.msg === 'No suitable Accout for this credentials found') {
-                    props.setUserName(null);
-                } else {
-                    props.setUserName(resolve.data.user);
-                }
-                console.log(resolve)
-            })
-            .catch(err => console.log('Error while login', err));
-    }
-
-    const register = () => {
-        authApi.register(username, password)
-            .then(resolve => {
-                props.setUserName(resolve.data.user);
-                console.log(resolve)
-            })
-            .catch(err => console.log('Error while login', err));
-    }
+    const ctx = useContext(UserContext);
 
     return (
         <MyModal>
@@ -52,8 +20,8 @@ export default (props) => {
                        placeholder="Password"/>
             </div>
             <div className={style.buttonContainer}>
-                <Button onClick={() => login()}>Login</Button>
-                <Button onClick={() => register()}>Register</Button>
+                <Button onClick={() => ctx.login(username, password)}>Login</Button>
+                <Button onClick={() => ctx.register(username, password)}>Register</Button>
             </div>
         </MyModal>
     );

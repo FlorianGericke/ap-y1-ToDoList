@@ -9,7 +9,8 @@ const AddNewTodo = (props) => {
     const [insertTask, setTask] = useState()
     const [insertPriority, setPriority] = useState()
 
-    function submitHandler() {
+    function submitHandler(event) {
+        event.preventDefault();
         todoApi.add(insertTask, insertPriority)
             .then(resolve => {
                 console.log(resolve);
@@ -38,7 +39,7 @@ const AddNewTodo = (props) => {
                     </select>
                 </div>
                 <br/>
-                <Button onClick={() => submitHandler()}>Hinzufügen</Button>
+                <Button onClick={(event) => submitHandler(event)}>Hinzufügen</Button>
             </form>
         </MyModal>
     );

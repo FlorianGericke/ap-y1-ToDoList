@@ -1,12 +1,12 @@
 import React from 'react';
 import Main from "./components/Main";
-import UserContext from "./context/UserContext";
+import {UserContextProvider} from "./context/UserContext";
 
 function App() {
     return (
-        <UserContext>
-            <Main/>);
-        </UserContext>
+        <UserContextProvider>
+            <Main/>
+        </UserContextProvider>
     );
 }
 

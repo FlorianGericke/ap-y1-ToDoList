@@ -1,44 +1,38 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import style from './../style/css/main.module.css'
 import Button from "./io/button/Button";
 import TodoTable from "./ui/todos/TodoTable";
 import AddNewTodo from "./ui/addNewTodo/AddNewTodo";
 import TodosOverText from "./ui/todos/TodosOverText";
-import {authApi, todoApi} from "../requests/AxiosRequest";
+import {todoApi} from "../requests/AxiosRequest";
 import Login from "./ui/login/Login";
+import UserContext from "../context/UserContext";
 
 const Main = () => {
     const [newTodoVisibility, setNewTodoVisibility] = useState(false);
     const [DeleteMode, setDeleteMode] = useState(false);
     const [todos, setTodos] = useState();
-    const [userName, setUserName] = useState(null);
+    const ctx = useContext(UserContext)
 
     useEffect(() => {
         todoApi.getAll()
             .then(err => {
                 setTodos(err.data);
             });
-    }, [newTodoVisibility, userName])
+    }, [newTodoVisibility, ctx.userName])
 
     const loginRender = () => {
         return (
-            <Login setUserName={setUserName}/>
+            <Login/>
         );
     }
 
     const todoTableRender = () => {
         return (
             <>
-                <TodosOverText userName={userName}/>
+                <TodosOverText userName={ctx.userName}/>
                 <div className={style.logoutButton}>
-                    <Button type="trigger" onClick={() => {
-                        authApi.logout()
-                            .then(resolve => {
-                                console.log(resolve)
-                            })
-                            .catch(err => console.log('Error while login', err))
-                            .finally(() => setUserName(null));
-                    }}>Logout</Button>
+                    <Button type="trigger" onClick={() => ctx.logout()}>Logout</Button>
                 </div>
                 <div className={style.div}>
                     <div className={style.buttonsDiv}>
@@ -62,8 +56,9 @@ const Main = () => {
 
     return (
         <>
-            {userName === null ? loginRender() : todoTableRender()}
+            {ctx.loggedIn === false ? loginRender() : todoTableRender()}
         </>
     );
 }
+
 export default Main;

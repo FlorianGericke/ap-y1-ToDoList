@@ -51,7 +51,7 @@ app.use(function (req, res, next) {
 User.hasMany(Todo);
 Todo.belongsTo(User);
 
-sequelize.sync({force: false})
+sequelize.sync({force: true})
     .catch(err => console.log(err));
 
 // error handler
