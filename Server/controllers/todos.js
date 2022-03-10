@@ -6,7 +6,11 @@ exports.allTodos = (req, res) => {
         User.findByPk(req.session.user.id)
             .then(user => {
                 if (user) {
-                    user.getTodos()
+                    user.getTodos({
+                        order: [
+                            ['priority', 'DESC'],
+                        ]
+                    })
                         .then(todos => {
                             if (todos) {
                                 res.json(todos)
