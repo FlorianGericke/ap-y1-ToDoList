@@ -15,6 +15,10 @@ const Main = () => {
     const ctx = useContext(UserContext)
 
     useEffect(() => {
+        ctx.login('', '');
+    }, []);
+
+    useEffect(() => {
         todoApi.getAll()
             .then(err => {
                 setTodos(err.data);
