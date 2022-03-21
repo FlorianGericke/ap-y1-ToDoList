@@ -17,7 +17,7 @@ const Button = (props) => {
     }
 
     return (
-        <div className={st} onClick={props.type === "toggle" ? () => toggleActive() : props.onClick}>
+        <div id={props.id} className={st} onClick={props.type === "toggle" ? () => toggleActive() : props.onClick}>
             <span><b>{props.children}</b></span>
         </div>
     );

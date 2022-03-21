@@ -20,8 +20,8 @@ export default (props) => {
                        placeholder="Password"/>
             </div>
             <div className={style.buttonContainer}>
-                <Button onClick={() => ctx.login(username, password)}>Login</Button>
-                <Button onClick={() => ctx.register(username, password)}>Register</Button>
+                <Button id="button-Login"  onClick={() => ctx.login(username, password)}>Login</Button>
+                <Button id="button-Register" onClick={() => ctx.register(username, password)}>Register</Button>
             </div>
         </MyModal>
     );
