@@ -24,7 +24,7 @@ var server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-console.log(`http://localhost:${port}`);
+console.log(`http://127.0.0.1:${port}`);
 
 /**
  * Normalize a port into a number, string, or false.
