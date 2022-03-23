@@ -11,27 +11,23 @@ const User = require('./models/User');
 
 const todoRouter = require('./routes/todo');
 const authentificationRouter = require('./routes/authenticate');
+const PasswordHasher = require("./util/PasswordHasher");
 
 //setting up middlewares
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:3000');
 
-    // Request methods you wish to allow
+app.use((req, res, next) => {
+    const allowedOrigins = ['http://127.0.0.1:3000','http://localhost:3000'];
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', true);
+    return next();
 });
 app.use(cookieParser());
 app.use(session({
@@ -52,6 +48,18 @@ User.hasMany(Todo);
 Todo.belongsTo(User);
 
 sequelize.sync({force: true})
+    .then(res =>{
+        User.findByPk(1)
+            .then(user => {
+                if(!user){
+                    User.create({
+                        name: 'TestUser',
+                        password: PasswordHasher.createPasswordJSON('TestPassword')
+                    })
+                        .then(user => {console.log('TestUser created')});
+                }
+            })
+    })
     .catch(err => console.log(err));
 
 // error handler

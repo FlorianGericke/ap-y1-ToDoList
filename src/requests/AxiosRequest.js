@@ -2,7 +2,7 @@ const axios = require("axios");
 
 export class authApi {
     static api = axios.create({
-        baseURL: 'http://localhost:4001/auth/',
+        baseURL: 'http://'+ document.location.hostname +':4001/auth/',
         withCredentials: true
     });
 

@@ -7,7 +7,8 @@
     "startServer": "nodemon Server/bin/www.js --watch Server/",
     "startReact": "react-scripts start",
     "startSass": "sass --watch src/style/scss/:src/style/css",
-    "start": "npm run startServer & npm run startSass & npm run startReact"
+    "start": "npm run startServer & npm run startSass & npm run startReact",
+    "test_all_browser" : "testcafe chrome:headless,firefox:headless e2e/my-first-test.spec.e2e.tsx --skip-js-errors"
   },
   "repository": {
     "type": "git",
