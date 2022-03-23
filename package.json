@@ -8,7 +8,8 @@
     "startReact": "react-scripts start",
     "startSass": "sass --watch src/style/scss/:src/style/css",
     "start": "npm run startServer & npm run startSass & npm run startReact",
-    "test_all_browser" : "testcafe chrome:headless,firefox:headless e2e/my-first-test.spec.e2e.tsx --skip-js-errors"
+    "test_all_browser_log" : "testcafe chrome:headless tests/e2e/my-first-test.spec.e2e.tsx --skip-js-errors | tee tests/logs/E2E_$(date +%Y.%m.%d-%H:%M).log",
+    "test_all_browser" : "testcafe chrome:headless tests/e2e/my-first-test.spec.e2e.tsx"
   },
   "repository": {
     "type": "git",

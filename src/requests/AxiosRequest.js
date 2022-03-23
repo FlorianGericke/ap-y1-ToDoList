@@ -27,7 +27,7 @@ export class authApi {
 
 export class todoApi {
     static api = axios.create({
-        baseURL: 'http://localhost:4001/todo/',
+        baseURL: 'http://'+ document.location.hostname +':4001/todo/',
         withCredentials: true
     });
 

@@ -1,0 +1,10 @@
+ Running tests in:
+ - Chrome 99.0.4844.83 / macOS 10.15.7
+
+ TodoList End2End Test
+ ✓ Login not existing user
+ ✓ Login existing user
+ ✓ Create Todos
+
+
+ 3 passed (11s)
