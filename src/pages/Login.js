@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
-import {Container, Paper, Box, Button} from "@mui/material";
+import {Container, Paper, Box, Button, Typography} from "@mui/material";
 import FaceIcon from '@mui/icons-material/Face';
 import InputTextIcon from "../components/InputTextIcon";
 import KeyIcon from '@mui/icons-material/Key';
 import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import useInputValidation from "../Hooks/useInputValidation";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Login = () => {
@@ -39,13 +40,29 @@ const Login = () => {
                 sx={{
                     padding: 2,
                     width: 500,
-                    margin: '0 auto',
+                    margin: '15vh auto',
                 }}
+                elevation={4}
             >
                 <form
                     align="center"
                 >
-                    <Box>
+                        <AccountCircleIcon
+                            sx={{
+                                fontSize: '200px'
+                            }}
+                            color="primary"
+                        />
+                    <Typography
+                        variant={"h4"}
+                        color="primary"
+                    >
+                        Login or Sign Up
+                    </Typography>
+
+                    <Box
+                        marginTop={4}
+                    >
                         <InputTextIcon
                             onChange={event => {
                                 setUsername(event.target.value);
@@ -57,6 +74,7 @@ const Login = () => {
                             width={34}
                             onBlur={() => userNameBlurHandler(true)}
                             error={userNameError}
+                            helperText={userNameError ? 'At least 3 Characters Required': null}
                         />
                     </Box>
                     <Box
@@ -74,6 +92,7 @@ const Login = () => {
                             }}
                             onBlur={() => userPasswordBlurHandler(true)}
                             error={userPasswordError}
+                            helperText={userPasswordError ? 'At least 8 Characters Required': null}
                         />
                     </Box>
                     <Box
