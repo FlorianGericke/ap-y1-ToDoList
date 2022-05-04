@@ -1,9 +1,26 @@
 import React from 'react';
-import {AppBar, Box, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar, Typography} from "@mui/material";
+import {
+    AppBar, Avatar,
+    Box, Button,
+    Drawer,
+    IconButton,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Toolbar,
+    Typography
+} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import PopupState, {bindMenu, bindTrigger} from "material-ui-popup-state";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import LogoutIcon from '@mui/icons-material/Logout';
+import SettingsIcon from '@mui/icons-material/Settings';
+
 
 const Layout = ({children}) => {
     const navigation = useNavigate();
@@ -18,7 +35,52 @@ const Layout = ({children}) => {
             >
                 <Toolbar
                 >
-
+                    <Typography
+                        sx={{
+                            flexGrow: 1
+                        }}
+                        variant={'h4'}
+                    >
+                        Meterial Notes
+                    </Typography>
+                    <Typography
+                        variant={'h6'}
+                    >
+                        Florian
+                    </Typography>
+                    <PopupState variant="popover" popupId="demo-popup-menu">
+                        {(popupState) => (
+                            <React.Fragment>
+                                <IconButton variant="contained" {...bindTrigger(popupState)}>
+                                    <Avatar
+                                        src='/avatar.png'
+                                    />
+                                </IconButton>
+                                <Menu {...bindMenu(popupState)}>
+                                    <MenuItem
+                                        onClick={() => {}
+                                    }>
+                                        <ListItemIcon>
+                                            <LogoutIcon/>
+                                        </ListItemIcon>
+                                        <ListItem>
+                                            Logout
+                                        </ListItem>
+                                    </MenuItem>
+                                    <MenuItem
+                                        onClick={() => {}
+                                        }>
+                                        <ListItemIcon>
+                                            <SettingsIcon/>
+                                        </ListItemIcon>
+                                        <ListItem>
+                                            Edit Profile
+                                        </ListItem>
+                                    </MenuItem>
+                                </Menu>
+                            </React.Fragment>
+                        )}
+                    </PopupState>
                 </Toolbar>
             </AppBar>
             <Drawer
