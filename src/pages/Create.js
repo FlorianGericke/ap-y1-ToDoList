@@ -18,7 +18,7 @@ import useInputValidation from "../Hooks/useInputValidation";
 
 const Create = () => {
     const [task,setTask] = useState('');
-    const [category,setCategory] = useState('work');
+    const [category,setCategory] = useState(1);
 
     const {
         isValid: taskValid,
@@ -91,27 +91,27 @@ const Create = () => {
                                 <FormControlLabel
                                     control={<Radio/>}
                                     label={'Work'}
-                                    value={'work'}
+                                    value={1}
                                 />
                                 <FormControlLabel
                                     control={<Radio/>}
                                     label={'Private'}
-                                    value={'private'}
+                                    value={2}
                                 />
                                 <FormControlLabel
                                     control={<Radio/>}
                                     label={'Money'}
-                                    value={'money'}
+                                    value={3}
                                 />
                                 <FormControlLabel
                                     control={<Radio/>}
                                     label={'Hobby'}
-                                    value={'hobby'}
+                                    value={4}
                                 />
                                 <FormControlLabel
                                     control={<Radio/>}
                                     label={'Other'}
-                                    value={'other'}
+                                    value={5}
                                 />
                             </RadioGroup>
                         </FormControl>
