@@ -7,11 +7,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import useInputValidation from "../Hooks/useInputValidation";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import {useNavigate} from "react-router-dom";
 
 
 const Login = () => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const navigator = useNavigate();
 
     const {
         isValid: userNameValid,
@@ -32,6 +34,7 @@ const Login = () => {
     const submitHandler = (event, onRegisty) => {
         event.preventDefault();
         console.log(`${username} ${password} ${onRegisty}`);
+        navigator('/');
     }
 
     return (
