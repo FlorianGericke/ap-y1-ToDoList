@@ -4,7 +4,23 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 
-const InputTextIcon = ({label, icon, variant, type, width, helperText, onChange, onBlur, error}) => {
+const InputTextIcon = (props) => {
+
+    const
+        {
+            label,
+            icon,
+            variant,
+            type,
+            width,
+            helperText,
+            onChange,
+            onBlur,
+            error,
+            color
+        } = props;
+
+
     const [information, setInformation] = useState({showPassword: false, icon: <VisibilityIcon/>});
 
     const passwordVisibilityToggle = () => {
@@ -28,6 +44,7 @@ const InputTextIcon = ({label, icon, variant, type, width, helperText, onChange,
                 width: width + 'ch'
             }}
             error={error}
+            color={color}
             label={label}
             type={mode()}
             onBlur={onBlur}
