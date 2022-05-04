@@ -1,15 +1,8 @@
 import React from 'react';
-import {Box, Typography} from "@mui/material";
+import {Container, Typography} from "@mui/material";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import NoteCard from "../components/NoteCard";
 
-
-const note = {
-    id: 1,
-    task: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
-    priority: 2,
-    done: false
-}
 const notes = [
     {
         id: 1,
@@ -60,7 +53,7 @@ const NodeBoard = () => {
     }
 
     return (
-        <Box>
+        <Container>
             <Typography
                 variant="h4"
                 component={'h2'}
@@ -79,7 +72,7 @@ const NodeBoard = () => {
                     {notes.map(note => <NoteCard note={note} key={note.id} onMenuClick={popUpClickHandler} />)}
                 </Masonry>
             </ResponsiveMasonry>
-        </Box>
+        </Container>
     );
 };
 
