@@ -6,7 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import PopupState, {bindTrigger, bindMenu} from 'material-ui-popup-state';
 import {blue, deepPurple, green, grey, pink, yellow} from "@mui/material/colors";
 
-const NoteCard = ({note}) => {
+const NoteCard = ({note, onMenuClick}) => {
 
     const category = (priority) => {
         switch (priority) {
@@ -26,18 +26,12 @@ const NoteCard = ({note}) => {
 
     }
 
-    const popUpClickHandler = item =>{
-        if(item === 'delete')
-            console.log(`Delete todo with id ${note.id}`);
-        if(item === 'edit')
-            console.log(`Edit todo with id ${note.id}`);
-    }
 
     return (
         <Card
-            sx={{
-                width: 350
-            }}
+            // sx={{
+            //     style={{width: "100%", display: "block"}}
+            // }}
             elevation={3}
         >
             <CardHeader
@@ -77,8 +71,8 @@ const NoteCard = ({note}) => {
                                     <MoreVertIcon/>
                                 </IconButton>
                                 <Menu {...bindMenu(popupState)}>
-                                    <MenuItem onClick={() => popUpClickHandler('delete')}>Delete</MenuItem>
-                                    <MenuItem onClick={() => popUpClickHandler('edit')}>Edit</MenuItem>
+                                    <MenuItem onClick={() => onMenuClick({option: 'delete', id: note.id})}>Delete</MenuItem>
+                                    <MenuItem onClick={() => onMenuClick({option: 'edit', id: note.id})}>Edit</MenuItem>
                                 </Menu>
                             </React.Fragment>
                         )}
