@@ -18,7 +18,8 @@ const InputTextIcon = (props) => {
             onChange,
             onBlur,
             error,
-            color
+            color,
+            id
         } = props;
 
 
@@ -44,7 +45,7 @@ const InputTextIcon = (props) => {
             sx={{
                 width: width + 'ch',
             }}
-
+            id={id}
             error={error}
             color={color}
             label={label}

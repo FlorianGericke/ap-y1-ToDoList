@@ -1,5 +1,6 @@
 import React, {createContext, useState} from 'react';
 import {authApi} from "../http/useAxios";
+import resolve from "resolve";
 
 const UserContext = createContext({
     loggedIn: false,
@@ -24,22 +25,34 @@ export const UserContextProvider = ({children}) =>{
 
     }
 
+
+
     const login = (userName, password) => {
-        authApi.login(userName, password)
-            .then(resolve => {
-                if (resolve.data.msg === 'No suitable Accout for this credentials found') {
-                    setUserName(null);
-                    setLoggedIn(false);
-                } else if (resolve.data.msg === 'Someone is currently logged in') {
+        if(userName && password){
+            authApi.login(userName, password)
+                .then(resolve => {
+                    if (resolve.data.msg === 'No suitable Accout for this credentials found') {
+                        setUserName(null);
+                        setLoggedIn(false);
+                    } else if (resolve.data.msg === 'Someone is currently logged in') {
+                        setUserName(resolve.data.user);
+                        setLoggedIn(true);
+                    } else {
+                        setUserName(userName);
+                        setLoggedIn(true);
+                    }
+                    console.log(resolve)
+                })
+                .catch(err => console.log('Error while login', err));
+        }else{
+            authApi.login('userName', 'password').then(resolve =>{
+                if (resolve.data.msg === 'Someone is currently logged in') {
                     setUserName(resolve.data.user);
                     setLoggedIn(true);
-                } else {
-                    setUserName(userName);
-                    setLoggedIn(true);
                 }
-                console.log(resolve)
             })
-            .catch(err => console.log('Error while login', err));
+        }
+
 
     }
 

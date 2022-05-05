@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import Create from "./pages/Create";
@@ -23,6 +23,8 @@ const theme = createTheme({
 
 const Main = () => {
     const ctx = useContext(UserContext);
+
+
 
     return (
         <ThemeProvider theme={theme}>

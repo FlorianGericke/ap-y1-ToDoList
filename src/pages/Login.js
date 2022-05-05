@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Container, Paper, Box, Button, Typography} from "@mui/material";
 import FaceIcon from '@mui/icons-material/Face';
 import InputTextIcon from "../components/InputTextIcon";
@@ -31,13 +31,17 @@ const Login = ({setChange}) => {
         reset: userPasswordNameReset
     } = useInputValidation(str => str.length >= 8);
 
-    const submitHandler =  (event, onRegisty) => {
+    useEffect(() =>{
+        ctx.login()
+    },[])
+
+    const submitHandler = (event, onRegisty) => {
         event.preventDefault();
 
-        if(!onRegisty){
+        if (!onRegisty) {
             ctx.login(username, password);
         }
-        if(onRegisty){
+        if (onRegisty) {
             ctx.register(username, password);
         }
     }
@@ -80,11 +84,12 @@ const Login = ({setChange}) => {
                             icon={<FaceIcon/>}
                             rows={1}
                             label={'Username'}
+                            id="Input-Username"
                             variant={'outlined'}
                             width={34}
                             onBlur={() => userNameBlurHandler(true)}
                             error={userNameError}
-                            helperText={userNameError ? 'At least 3 Characters Required': null}
+                            helperText={userNameError ? 'At least 3 Characters Required' : null}
                         />
                     </Box>
                     <Box
@@ -94,6 +99,7 @@ const Login = ({setChange}) => {
                             icon={<KeyIcon/>}
                             label="Password"
                             type="password"
+                            id="Input-Password"
                             variant={'outlined'}
                             rows={1}
                             width={34}
@@ -103,7 +109,7 @@ const Login = ({setChange}) => {
                             }}
                             onBlur={() => userPasswordBlurHandler(true)}
                             error={userPasswordError}
-                            helperText={userPasswordError ? 'At least 8 Characters Required': null}
+                            helperText={userPasswordError ? 'At least 8 Characters Required' : null}
                         />
                     </Box>
                     <Box
@@ -113,7 +119,7 @@ const Login = ({setChange}) => {
                             sx={{
                                 marginRight: 6
                             }}
-                            type={"submit"}
+                            id={'#button-Register'}
                             variant={'outlined'}
                             endIcon={<AppRegistrationIcon/>}
                             onClick={(event) => submitHandler(event, true)}
@@ -122,6 +128,7 @@ const Login = ({setChange}) => {
                             Register
                         </Button>
                         <Button
+                            id={'#button-LogIn'}
                             type={"submit"}
                             variant={'contained'}
                             endIcon={<LoginIcon/>}

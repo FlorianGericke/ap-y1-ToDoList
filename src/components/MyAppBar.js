@@ -27,11 +27,14 @@ const MyAppBar = () => {
                 </Typography>
                 <Typography
                     variant={'h6'}
+                    id={'Typography-UserLoggedIn'}
                 >
                     {ctx.userName}
                 </Typography>
-                <OptionButton icon={<Avatar src='/avatar.png'/>}>
+                <OptionButton id={'Avatar-Button'}  icon={<Avatar src='/avatar.png'/>}>
                     <OptionButtonMenuItem
+                        id={'Avatar-Button-Logout'}
+
                         onClick={() => {
                             ctx.logout();
                         }}
