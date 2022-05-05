@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const useinputValidation = validationFunction => {
+const useInputValidation = validationFunction => {
     const [value, setValue] = useState('');
     const [touched, setTouched] = useState(false);
 
@@ -25,4 +25,4 @@ const useinputValidation = validationFunction => {
     };
 };
 
-export default useinputValidation;
+export default useInputValidation;

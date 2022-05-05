@@ -9,7 +9,7 @@ const Todo = sequelize.define("todo", {
         allowNull: false
     },
     task: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false
     },
     priority: {

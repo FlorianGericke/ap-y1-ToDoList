@@ -9,7 +9,6 @@ import useInputValidation from "../Hooks/useInputValidation";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {useNavigate} from "react-router-dom";
 
-
 const Login = () => {
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
@@ -50,12 +49,13 @@ const Login = () => {
                 <form
                     align="center"
                 >
-                        <AccountCircleIcon
-                            sx={{
-                                fontSize: '200px'
-                            }}
-                            color="primary"
-                        />
+                    <AccountCircleIcon
+                        sx={{
+                            fontSize: '200px'
+                        }}
+                        color="primary"
+                    />
+
                     <Typography
                         variant={"h4"}
                         color="primary"
@@ -72,6 +72,7 @@ const Login = () => {
                                 userNameChangedHandler(event);
                             }}
                             icon={<FaceIcon/>}
+                            rows={1}
                             label={'Username'}
                             variant={'outlined'}
                             width={34}
@@ -88,6 +89,7 @@ const Login = () => {
                             label="Password"
                             type="password"
                             variant={'outlined'}
+                            rows={1}
                             width={34}
                             onChange={event => {
                                 setPassword(event.target.value);

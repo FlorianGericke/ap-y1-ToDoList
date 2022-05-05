@@ -9,6 +9,7 @@ const InputTextIcon = (props) => {
     const
         {
             label,
+            rows,
             icon,
             variant,
             type,
@@ -41,13 +42,16 @@ const InputTextIcon = (props) => {
     return (
         <TextField
             sx={{
-                width: width + 'ch'
+                width: width + 'ch',
             }}
+
             error={error}
             color={color}
             label={label}
             type={mode()}
             onBlur={onBlur}
+            rows={rows}
+            multiline={(rows !== 1)}
             InputProps={{
                 startAdornment: (
                     <InputAdornment position="start">

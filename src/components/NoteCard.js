@@ -1,10 +1,9 @@
 import React from 'react';
-import {Avatar, Card, CardContent, CardHeader, IconButton, Typography} from "@mui/material";
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import PopupState, {bindTrigger, bindMenu} from 'material-ui-popup-state';
+import {Avatar, Card, CardContent, CardHeader, Typography} from "@mui/material";
 import {blue, deepPurple, green, grey, pink, yellow} from "@mui/material/colors";
+import OptionButton from "./OptionButton";
+import OptionButtonMenuItem from "./OptionButtonMenuItem";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const NoteCard = ({note, onMenuClick}) => {
 
@@ -23,15 +22,11 @@ const NoteCard = ({note, onMenuClick}) => {
             default:
                 return `No category with ID ${note.priority}`;
         }
-
     }
 
 
     return (
         <Card
-            // sx={{
-            //     style={{width: "100%", display: "block"}}
-            // }}
             elevation={3}
         >
             <CardHeader
@@ -64,19 +59,17 @@ const NoteCard = ({note, onMenuClick}) => {
                 title={'No Task Titel Implemented'}
                 subheader={category(note.priority)}
                 action={
-                    <PopupState variant="popover" popupId="demo-popup-menu">
-                        {(popupState) => (
-                            <React.Fragment>
-                                <IconButton variant="contained" {...bindTrigger(popupState)}>
-                                    <MoreVertIcon/>
-                                </IconButton>
-                                <Menu {...bindMenu(popupState)}>
-                                    <MenuItem onClick={() => onMenuClick({option: 'delete', id: note.id})}>Delete</MenuItem>
-                                    <MenuItem onClick={() => onMenuClick({option: 'edit', id: note.id})}>Edit</MenuItem>
-                                </Menu>
-                            </React.Fragment>
-                        )}
-                    </PopupState>
+                    <OptionButton icon={<MoreVertIcon/>}>
+                        <OptionButtonMenuItem
+                            onClick={() => onMenuClick({option: 'delete', id: note.id})}
+                        >
+                            Delete
+                        </OptionButtonMenuItem>
+                        <OptionButtonMenuItem
+                            onClick={() => onMenuClick({option: 'delete', id: note.id})}>
+                            Edit
+                        </OptionButtonMenuItem>
+                    </OptionButton>
                 }
             />
 

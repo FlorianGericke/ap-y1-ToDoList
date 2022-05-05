@@ -1,189 +1,39 @@
 import React from 'react';
-import {
-    AppBar, Avatar,
-    Box,
-    Drawer,
-    IconButton,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    Toolbar,
-    Typography
-} from "@mui/material";
-import {useLocation, useNavigate} from "react-router-dom";
-import HomeIcon from '@mui/icons-material/Home';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import PopupState, {bindMenu, bindTrigger} from "material-ui-popup-state";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import LogoutIcon from '@mui/icons-material/Logout';
-import SettingsIcon from '@mui/icons-material/Settings';
-
+import {Box,} from "@mui/material";
+import {useLocation} from "react-router-dom";
+import MyAppBar from "./MyAppBar";
+import MyDrawer from "./MyDrawer";
 
 const Layout = ({children}) => {
-    const navigation = useNavigate();
     const location = useLocation();
+
+    const style = {
+        page: {
+            position: 'relative',
+            width: `calc(100% - 240px)`,
+            paddingTop: 5,
+            top: (theme) => theme.mixins.toolbar.minHeight,
+            left: () => location.pathname === '/pages/login' ? '' : '240px',
+            margin: () => location.pathname === '/pages/login' ? '0 auto' : ''
+        }
+    }
+
     return (
         <Box
+            sx={{
+                backgroundColor: '#f6f6f6',
+                height: '100vh',
+                overflow: 'auto',
+            }}
         >
             {location.pathname !== '/pages/login' && <Box>
-                <AppBar
-                    sx={{
-                        zIndex: (theme) => theme.zIndex.drawer + 1
-                    }}
-                    position={'fixed'}
-                >
-                    <Toolbar
-                    >
-                        <Typography
-                            sx={{
-                                flexGrow: 1
-                            }}
-                            variant={'h4'}
-                        >
-                            Meterial Notes
-                        </Typography>
-                        <Typography
-                            variant={'h6'}
-                        >
-                            Florian
-                        </Typography>
-                        <PopupState variant="popover" popupId="demo-popup-menu">
-                            {(popupState) => (
-                                <React.Fragment>
-                                    <IconButton variant="contained" {...bindTrigger(popupState)}>
-                                        <Avatar
-                                            src='/avatar.png'
-                                        />
-                                    </IconButton>
-                                    <Menu {...bindMenu(popupState)}>
-                                        <MenuItem
-                                            onClick={() => {
-                                                navigation('/pages/login')
-                                            }
-                                            }>
-                                            <ListItemIcon>
-                                                <LogoutIcon/>
-                                            </ListItemIcon>
-                                            <ListItem>
-                                                Logout
-                                            </ListItem>
-                                        </MenuItem>
-                                        <MenuItem
-                                            onClick={() => {
-                                            }
-                                            }>
-                                            <ListItemIcon>
-                                                <SettingsIcon/>
-                                            </ListItemIcon>
-                                            <ListItem>
-                                                Edit Profile
-                                            </ListItem>
-                                        </MenuItem>
-                                    </Menu>
-                                </React.Fragment>
-                            )}
-                        </PopupState>
-                    </Toolbar>
-                </AppBar>
-                <Drawer
-                    variant='permanent'
-                    anchor="left"
-                    sx={{
-                        flexShrink: 0,
-                    }}
-
-                >
-                    <Box
-                        width={'240px'}
-                        marginTop={5}
-                        sx={
-                            {
-                                position: 'relative',
-                                top: (theme) => theme.mixins.toolbar.minHeight,
-
-                            }
-                        }
-                    >
-                        <List>
-                            <ListItem
-                                button
-                                onClick={() => navigation('/')}
-
-                            >
-                                <ListItemIcon>
-                                    <HomeIcon
-                                        color="primary"
-                                        fontSize={'medium'}
-                                    />
-                                </ListItemIcon>
-                                <ListItemText>
-                                    <Typography
-                                        variant="h5"
-                                        component={'h2'}
-                                        color="primary"
-                                    >
-                                        Home
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
-
-                            <ListItem
-                                button
-                                onClick={() => navigation('/pages/board')}
-                            >
-                                <ListItemIcon>
-                                    <DashboardIcon
-                                        color="primary"
-                                        fontSize={'medium'}
-                                    />
-                                </ListItemIcon>
-                                <ListItemText>
-                                    <Typography
-                                        variant="h5"
-                                        component={'h2'}
-                                        color="primary"
-                                    >
-                                        Board
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
-
-                            <ListItem
-                                button
-                                onClick={() => navigation('/pages/create')}
-                            >
-                                <ListItemIcon>
-                                    <AddCircleOutlineIcon
-                                        color="primary"
-                                        fontSize={'medium'}
-                                    />
-                                </ListItemIcon>
-                                <ListItemText>
-                                    <Typography
-                                        variant="h5"
-                                        component={'h2'}
-                                        color="primary"
-                                    >
-                                        Create
-                                    </Typography>
-                                </ListItemText>
-                            </ListItem>
-                        </List>
-                    </Box>
-                </Drawer>
+                <MyAppBar/>
+                <MyDrawer/>
             </Box>}
+
             <Box
-                sx={{
-                    position: 'relative',
-                    left: () => location.pathname === '/pages/login' ? '' : '240px',
-                    margin: () => location.pathname === '/pages/login' ? '0 auto' : '',
-                    top: (theme) => theme.mixins.toolbar.minHeight,
-                    width: `calc(100% - 240px)`
-                }}
-                marginTop={5}
+                sx={style.page}
+
             >
                 {children}
             </Box>

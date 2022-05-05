@@ -15,8 +15,34 @@ import InputTextIcon from "../components/InputTextIcon";
 import CategoryIcon from '@mui/icons-material/Category';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import useInputValidation from "../Hooks/useInputValidation";
+import {todoApi} from "../http/useAxios";
+import {useNavigate} from "react-router-dom";
+
+const categorys = [
+    {
+        label: 'Work',
+        value: 1,
+    },
+    {
+        label: 'Private',
+        value: 2,
+    },
+    {
+        label: 'Money',
+        value: 3,
+    },
+    {
+        label: 'Hobby',
+        value: 4,
+    },
+    {
+        label: 'Other',
+        value: 5,
+    },
+]
 
 const Create = () => {
+    const navigete = useNavigate();
     const [task,setTask] = useState('');
     const [category,setCategory] = useState(1);
 
@@ -31,7 +57,9 @@ const Create = () => {
 
     const submitHandler = event => {
         event.preventDefault();
-        console.log(`${task} ${category}`);
+        todoApi.add(task,category).then(() => {
+            navigete('/pages/board');
+        });
     };
 
     return (
@@ -53,7 +81,8 @@ const Create = () => {
                         icon={<AssignmentIcon/>}
                         label={'Task'}
                         variant={'outlined'}
-                        width={34}
+                        width={100}
+                        rows={5}
                         onChange={event => {
                             taskChangedHandler(event)
                             setTask(event.target.value)
@@ -88,31 +117,12 @@ const Create = () => {
                                 value={category}
                                 onChange={event => setCategory(event.target.value)}
                             >
-                                <FormControlLabel
+                                {categorys.map((category,index) =>  <FormControlLabel
+                                    key={index}
                                     control={<Radio/>}
-                                    label={'Work'}
-                                    value={1}
-                                />
-                                <FormControlLabel
-                                    control={<Radio/>}
-                                    label={'Private'}
-                                    value={2}
-                                />
-                                <FormControlLabel
-                                    control={<Radio/>}
-                                    label={'Money'}
-                                    value={3}
-                                />
-                                <FormControlLabel
-                                    control={<Radio/>}
-                                    label={'Hobby'}
-                                    value={4}
-                                />
-                                <FormControlLabel
-                                    control={<Radio/>}
-                                    label={'Other'}
-                                    value={5}
-                                />
+                                    label={category.label}
+                                    value={category.value}
+                                /> )}
                             </RadioGroup>
                         </FormControl>
                     </Box>
