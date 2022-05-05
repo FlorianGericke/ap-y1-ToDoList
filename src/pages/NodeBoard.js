@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Box, Container, Typography} from "@mui/material";
 import Masonry, {ResponsiveMasonry} from "react-responsive-masonry"
 import NoteCard from "../components/NoteCard";
@@ -13,7 +13,7 @@ const NodeBoard = () => {
     const popUpClickHandler = item => {
         if (item.option === 'delete')
             todoApi.delete(item.id).then(() => {
-                document.location.reload();
+                todoApi.getAll().then(res => setNotes(res.data))
             })
         if (item.option === 'edit')
             console.log(`Edit todo with id ${item.id}`);

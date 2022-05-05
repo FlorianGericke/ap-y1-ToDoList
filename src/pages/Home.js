@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Container, Typography} from "@mui/material";
+import userContext from "../context/UserContext";
+
+
+
+
+
 
 const Home = () => {
-    return (
+    const userCTX = useContext(userContext);
+   return (
         <Container>
             <Typography
                 variant={'h4'}

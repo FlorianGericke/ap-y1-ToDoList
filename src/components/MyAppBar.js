@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {AppBar, Avatar, ListItem, ListItemIcon, Toolbar, Typography} from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
-import {useNavigate} from "react-router-dom";
 import OptionButtonMenuItem from "./OptionButtonMenuItem";
 import OptionButton from "./OptionButton";
+import UserContext from "../context/UserContext";
 
 const MyAppBar = () => {
-    const navigation = useNavigate();
-
+    const ctx = useContext(UserContext);
     return (
         <AppBar
             sx={{
@@ -29,12 +28,12 @@ const MyAppBar = () => {
                 <Typography
                     variant={'h6'}
                 >
-                    Florian
+                    {ctx.userName}
                 </Typography>
                 <OptionButton icon={<Avatar src='/avatar.png'/>}>
                     <OptionButtonMenuItem
                         onClick={() => {
-                            navigation('/pages/login')
+                            ctx.logout();
                         }}
                     >
                         <ListItemIcon>

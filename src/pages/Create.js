@@ -18,6 +18,7 @@ import useInputValidation from "../Hooks/useInputValidation";
 import {todoApi} from "../http/useAxios";
 import {useNavigate} from "react-router-dom";
 
+
 const categorys = [
     {
         label: 'Work',
@@ -42,7 +43,7 @@ const categorys = [
 ]
 
 const Create = () => {
-    const navigete = useNavigate();
+    const navigate = useNavigate();
     const [task,setTask] = useState('');
     const [category,setCategory] = useState(1);
 
@@ -58,7 +59,7 @@ const Create = () => {
     const submitHandler = event => {
         event.preventDefault();
         todoApi.add(task,category).then(() => {
-            navigete('/pages/board');
+            navigate('/pages/board');
         });
     };
 

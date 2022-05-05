@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Container, Paper, Box, Button, Typography} from "@mui/material";
 import FaceIcon from '@mui/icons-material/Face';
 import InputTextIcon from "../components/InputTextIcon";
@@ -7,12 +7,13 @@ import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import useInputValidation from "../Hooks/useInputValidation";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {useNavigate} from "react-router-dom";
+import userContext from "../context/UserContext";
 
-const Login = () => {
+
+const Login = ({setChange}) => {
+    const ctx = useContext(userContext);
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
-    const navigator = useNavigate();
 
     const {
         isValid: userNameValid,
@@ -30,10 +31,15 @@ const Login = () => {
         reset: userPasswordNameReset
     } = useInputValidation(str => str.length >= 8);
 
-    const submitHandler = (event, onRegisty) => {
+    const submitHandler =  (event, onRegisty) => {
         event.preventDefault();
-        console.log(`${username} ${password} ${onRegisty}`);
-        navigator('/');
+
+        if(!onRegisty){
+            ctx.login(username, password);
+        }
+        if(onRegisty){
+            ctx.register(username, password);
+        }
     }
 
     return (
