@@ -52,7 +52,7 @@ const Create = () => {
         hasError: taskError,
         valueChangedHandler: taskChangedHandler,
         setTouched: taskBlurHandler,
-        reset: taskReset
+       // reset: taskReset
     } = useInputValidation(str => str !== '');
 
 
@@ -84,6 +84,7 @@ const Create = () => {
                         variant={'outlined'}
                         width={100}
                         rows={5}
+                        color={'secondary'}
                         onChange={event => {
                             taskChangedHandler(event)
                             setTask(event.target.value)
@@ -93,7 +94,7 @@ const Create = () => {
                         helperText={taskError ? 'Task can not be empty': null}
                     />
                     <Box
-                        marginTop={2}
+                        marginTop={4}
                     >
                         <FormControl>
                             <FormLabel
@@ -110,6 +111,7 @@ const Create = () => {
                                 <Typography
                                     color={'primary'}
                                     marginBottom={1}
+                                    variant={'h6'}
                                 >
                                     Category
                                 </Typography>
@@ -133,8 +135,9 @@ const Create = () => {
                         <Button
                             sx={{
                                 position: 'relative',
-                                left: '15%'
+                                left: '60%'
                             }}
+                            color={'secondary'}
                             type={"submit"}
                             variant="contained"
                             endIcon={<ArrowForwardIosIcon/>}

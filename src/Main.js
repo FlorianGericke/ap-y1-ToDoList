@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import Create from "./pages/Create";
@@ -7,11 +7,12 @@ import Login from "./pages/Login";
 import Home from "./pages/Home";
 import {createTheme, ThemeProvider} from "@mui/material";
 import UserContext from "./context/UserContext";
-import {purple, teal} from "@mui/material/colors";
+import {blue, purple, teal} from "@mui/material/colors";
 
 const theme = createTheme({
     palette:{
-        primary: teal
+        // primary: teal,
+        // secondary: purple,
     },
     components: {
         drawer: {
@@ -23,8 +24,6 @@ const theme = createTheme({
 
 const Main = () => {
     const ctx = useContext(UserContext);
-
-
 
     return (
         <ThemeProvider theme={theme}>
@@ -40,8 +39,6 @@ const Main = () => {
                 </BrowserRouter> :
                 <Login/>
             }
-
-
         </ThemeProvider>
     );
 };
